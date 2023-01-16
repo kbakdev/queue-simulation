@@ -1,30 +1,24 @@
 import React from "react";
-import {parseInteger} from "jsdom/lib/jsdom/living/helpers/strings.js";
 
-function Petitioner(props) {
+function QueueList(props) {
+    const {queues, onQueueSelect} = props;
+
+    const queueList = queues.map((queue) => {
+        const {id, name, description} = queue;
+        return (
+            <li key={id} onClick={() => onQueueSelect(id)}>
+                <h3>{name}</h3>
+                <p>{description}</p>
+            </li>
+        );
+    });
+
     return (
-        <div>
-            <p>{props.petitioner.time}</p>
-        </div>
-    )
+        <>
+            <h1>Queue List</h1>
+            <ul>{queueList}</ul>
+        </>
+    );
 }
 
-function PetitionersQueue() {
-    const petitioners = [
-        {time: 1},
-        {time: 2},
-        {time: 3},
-        {time: 4},
-        {time: 5},
-        {time: 6},
-    ];
-    return (
-        <div>
-            {petitioners.map((petitioner) => (
-                <Petitioner key={petitioner.time} petitioner={petitioner} />
-            ))}
-        </div>
-    )
-}
-
-export default Petitioner;
+export default QueueList;
