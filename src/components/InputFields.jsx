@@ -3,8 +3,8 @@ import React from "react";
 function InputFields() {
     return (
         <div>
-            <label htmlFor="queues">Number of queues</label>
-            <input type="number" id="queues" name="queues" min="1" max="10" />
+            <label htmlFor="queue">Number of queues</label>
+            <input type="number" id="queue" name="queue"/>
             <br></br>
             <label htmlFor="min">Min</label>
             <input type="number" id="min" />

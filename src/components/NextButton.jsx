@@ -1,21 +1,34 @@
 import React from "react";
-import {parseInteger} from "jsdom/lib/jsdom/living/helpers/strings.js";
 
-function generateRandomNumber(min, max) {
-    return Math.floor(Math.random() * (parseInteger(max) - parseInteger(min) + 1)) + parseInteger(min);
+// save min max to local storage
+function saveMinMax() {
+    const min = document.getElementById('min').value;
+    const max = document.getElementById('max').value;
+    localStorage.setItem('min', min);
+    localStorage.setItem('max', max);
+    const minMax = [min, max];
+    localStorage.setItem('minMax', JSON.stringify(minMax));
+    return minMax;
+}
+
+// save number of queues to local storage
+function saveLengthOfQueue() {
+    const lengthOfQueue = document.getElementById('queue').value;
+    localStorage.setItem('queue', lengthOfQueue);
+    return lengthOfQueue;
 }
 
 function NextButton() {
-    const getMinMax = () => {
-        const min = document.getElementById('min').value;
-        const max = document.getElementById('max').value;
-        console.log(generateRandomNumber(min, max));
-        return generateRandomNumber(min, max);
+    const saveConfiguration = () => {
+        const minMax = saveMinMax();
+        console.log(minMax);
+        const numberOfQueues = saveLengthOfQueue();
+        console.log(numberOfQueues);
     };
 
     return (
         <div>
-            <button onClick={getMinMax}>Next</button>
+            <button onClick={saveConfiguration}>Next</button>
         </div>
     );
 }
