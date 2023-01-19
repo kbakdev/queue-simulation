@@ -1,6 +1,6 @@
 import React from "react";
 import {parseInteger} from "jsdom/lib/jsdom/living/helpers/strings.js";
-import QueueTable from "./QueueTable.jsx";
+import QueueTable from "../QueueTable/QueueTable.jsx";
 
 // Generate random number between min and max
 function generateRandomNumber(min, max) {

@@ -1,5 +1,5 @@
-import InputFields from "../components/InputFields.jsx";
-import NextButton from "../components/NextButton.jsx";
+import InputFields from "../components/InputFields/InputFields.jsx";
+import NextButton from "../components/NextButton/NextButton.jsx";
 import React from "react";
 const Configuration = () => {
     return (
