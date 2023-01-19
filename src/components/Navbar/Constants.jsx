@@ -1,3 +1,3 @@
-const HOME = "/"
-const CONFIGURATION = "/configuration"
-const QUEUE = "/queue"
+export let HOME = "/";
+export let CONFIGURATION = "/configuration";
+export let QUEUE = "/queue";
