@@ -114,7 +114,13 @@ function removeFromQueue() {
 
     for (let i = 0; i < queueArray.length; i++) {
         queueSumArray[i] = parseInteger(queueSumArray[i]) - 1;
-        queueArray[i].shift();
+        console.log(queueArray[i]);
+        // get first element from array, if it's 0 then shift it, if not then decrease it by 1
+        if (parseInteger(queueArray[i][0]) === 1) {
+            queueArray[i].shift();
+        } else {
+            queueArray[i][0] = parseInteger(queueArray[i][0]) - 1;
+        }
     }
 
     queueSum.innerHTML = queueSumArray.join(",");
