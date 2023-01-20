@@ -12,7 +12,7 @@ function InputFields() {
           onChange={(e) =>
             setConfig((prev) => ({
               ...prev,
-              numberOfQueues: e.currentTarget.value,
+                numberOfQueues: e.target.value,
             }))
           }
           value={config.numberOfQueues}
@@ -23,12 +23,33 @@ function InputFields() {
       </div>
       <div>
         <label htmlFor="min">Min</label>
-        <input type="number" id="min" />
+        <input
+            onChange={(e) =>
+                setConfig((prev) => ({
+                    ...prev,
+                    min: e.target.value,
+                }))
+            }
+            value={config.min}
+            type="number"
+            id="min"
+            name="min"
+        />
       </div>
       <div>
         <label htmlFor="max">Max</label>
 
-        <input type="number" id="max" />
+        <input onChange={(e) =>
+            setConfig((prev) => ({
+                ...prev,
+                max: e.target.value,
+            }))
+        }
+                value={config.max}
+                type="number"
+                id="max"
+                name="max"
+        />
       </div>
     </div>
   );

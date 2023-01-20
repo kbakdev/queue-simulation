@@ -3,22 +3,25 @@ import { createContext, useContext, useState } from "react";
 const ConfigurationContext = createContext(null);
 
 export const ConfigurationContextProvider = ({ children }) => {
-  const [config, setConfig] = useState({
-    numberOfQueues: "",
-    min: "",
-    max: "",
-  });
-  return (
-    <ConfigurationContext.Provider value={{ config, setConfig }}>
-      {children}
-    </ConfigurationContext.Provider>
-  );
-};
+    const [config, setConfig] = useState({
+        numberOfQueues: 0,
+        min: 0,
+        max: 0,
+    });
+
+    return (
+        <ConfigurationContext.Provider value={{ config, setConfig }}>
+            {children}
+        </ConfigurationContext.Provider>
+    );
+}
 
 export const useConfigurationContext = () => {
-  const context = useContext(ConfigurationContext);
-  if (context === null) {
-    throw new Error("You should wrap component with provider!");
-  }
-  return context;
-};
+    const context = useContext(ConfigurationContext);
+    if (!context) {
+        throw new Error(
+            "useConfigurationContext must be used within a ConfigurationContextProvider"
+        );
+    }
+    return context;
+}
