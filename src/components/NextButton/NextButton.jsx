@@ -6,9 +6,7 @@ function saveMinMax() {
     const max = document.getElementById('max').value;
     localStorage.setItem('min', min);
     localStorage.setItem('max', max);
-    const minMax = [min, max];
-    localStorage.setItem('minMax', JSON.stringify(minMax));
-    return minMax;
+    return {min, max};
 }
 
 // save number of queues to local storage

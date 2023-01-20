@@ -17,12 +17,31 @@ function QueueTables() {
 }
 
 
+function generateQueueSum() {
+    const queue = document.getElementById('queue');
+    const queueArray = queue.innerHTML.split(" ");
+
+    // parse div queue to array
+    for (let i = 0; i < queueArray.length; i++) {
+        queueArray[i] = queueArray[i].split(",");
+    }
+
+    let queueSum = 0;
+    for (let i = 0; i < queueArray.length; i++) {
+        for (let j = 0; j < queueArray[i].length; j++) {
+            queueSum += parseInteger(queueArray[i][j]);
+        }
+    }
+
+    return queueSum;
+}
+
 // Generate Cell of a Table that contains the sum of the queue
 function QueueCell() {
     return (
         <>
             <td>
-                SUM: <div id="sum">0</div>
+                SUM: <div className="sum">{generateQueueSum()}</div>
             </td>
             <br></br>
             <td>

@@ -5,19 +5,22 @@ import Configuration from "../pages/Configuration.jsx";
 import Queue from "../pages/Queue.jsx";
 import NoPage from "../pages/NoPage.jsx";
 import { ConfigurationContextProvider } from "../context/ConfigurationContext.jsx";
+import {QueueListContextProvider} from "../context/QueueListContext.jsx";
 export default function Router() {
   return (
     <ConfigurationContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="configuration" element={<Configuration />} />
-            <Route path="queue" element={<Queue />} />
-            <Route path="*" element={<NoPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <QueueListContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="configuration" element={<Configuration />} />
+              <Route path="queue" element={<Queue />} />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </QueueListContextProvider>
     </ConfigurationContextProvider>
   );
 }
