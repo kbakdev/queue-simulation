@@ -43,15 +43,6 @@ function QueueList() {
     <>
       <div>
         <button onClick={handlerAddToQueue}>Add new person to queue</button>
-        <button onClick={removeFromQueue}>Remove from queue</button>
-        <button onClick={findQueueWithTheLowestSumByKey}>
-          Find queue with the lowest sum
-        </button>
-        <button onClick={findQueueWithTheLowestSum}>
-          findQueueWithTheLowestSum
-        </button>
-        <button onClick={makeQueueArray}>Make queue array</button>
-        <button onClick={countQueues}>Count queues</button>
       </div>
       <table>
         <ol>
