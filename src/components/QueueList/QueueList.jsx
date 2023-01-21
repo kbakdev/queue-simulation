@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { parseInteger } from "jsdom/lib/jsdom/living/helpers/strings.js";
-import QueueTable from "../QueueTable/QueueTable.jsx";
-import { useConfigurationContext } from "../../context/ConfigurationContext.jsx";
+import React, {useState} from "react";
+import {useConfigurationContext} from "../../context/ConfigurationContext.jsx";
 
 // Generate random number between min and max
 function generateRandomNumber(min, max) {
@@ -16,8 +14,7 @@ const decreaseAllQueues = (queues) => {
       return person;
     });
 
-    const filteredZeroValues = newQueue.filter((person) => person > 0);
-    return filteredZeroValues;
+    return newQueue.filter((person) => person > 0);
   });
   return Object.fromEntries(decreasedQueues.map((value, key) => [key, value]));
 };
@@ -70,9 +67,8 @@ function QueueList() {
             return (
               <li>
                 <h2>{queue}</h2>
-                {persons.map((person) => (
-                  <div>{person}</div>
-                ))}
+                <div id="sum">SUM: {persons.reduce((prev, num) => Number(prev) + Number(num), 0)}</div>
+                <div id="queue">QUEUE: {persons.join(", ")}</div>
               </li>
             );
           }
