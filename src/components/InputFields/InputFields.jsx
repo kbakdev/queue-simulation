@@ -1,57 +1,37 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { useConfigurationContext } from "../../context/ConfigurationContext";
 
 function InputFields() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const { setConfig, config } = useConfigurationContext();
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    setConfig({ numberOfQueue: data.queue, min: data.min, max: data.max });
+  };
   console.log(config);
   return (
-    <div>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="queue">Number of queues</label>
-        <input
-          onChange={(e) =>
-            setConfig((prev) => ({
-              ...prev,
-                numberOfQueues: e.target.value,
-            }))
-          }
-          value={config.numberOfQueues}
-          type="number"
-          id="queue"
-          name="queue"
-        />
+        <input type="number" {...register("queue")} />
       </div>
       <div>
         <label htmlFor="min">Min</label>
-        <input
-            onChange={(e) =>
-                setConfig((prev) => ({
-                    ...prev,
-                    min: e.target.value,
-                }))
-            }
-            value={config.min}
-            type="number"
-            id="min"
-            name="min"
-        />
+        <input type="number" {...register("min")} />
       </div>
       <div>
         <label htmlFor="max">Max</label>
 
-        <input onChange={(e) =>
-            setConfig((prev) => ({
-                ...prev,
-                max: e.target.value,
-            }))
-        }
-                value={config.max}
-                type="number"
-                id="max"
-                name="max"
-        />
+        <input type="number" {...register("max")} />
       </div>
-    </div>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 

@@ -21,9 +21,11 @@ const getKeyLowestQueue = (queues) => {
 function QueueList() {
   const { config } = useConfigurationContext();
   const [queue, setQueue] = useState(
-    Object.fromEntries(
-      Array.from({ length: config.numberOfQueues }, (_, i) => [i, []])
-    )
+    config === undefined
+      ? undefined
+      : Object.fromEntries(
+          Array.from({ length: config.numberOfQueues }, (_, i) => [i, []])
+        )
   );
   console.log(queue);
   const handlerAddToQueue = () => {
@@ -39,16 +41,16 @@ function QueueList() {
       };
     });
   };
+  if (!config) return <h2>Set Configuration!</h2>;
   return (
     <>
       <div>
         <button onClick={handlerAddToQueue}>Add new person to queue</button>
       </div>
-      <table>
-        <ol>
-          <QueueTable />
-        </ol>
-      </table>
+
+      <ol>
+        <QueueTable />
+      </ol>
     </>
   );
 }
