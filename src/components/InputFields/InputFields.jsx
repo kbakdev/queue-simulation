@@ -1,18 +1,26 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useConfigurationContext } from "../../context/ConfigurationContext";
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+const schema = yup.object().shape({
+    numberOfQueue: yup.number().required().positive().integer(),
+    min: yup.number().required().positive().integer(),
+    max: yup.number().required().positive().integer().min(yup.ref('min')),
+}).required();
 function InputFields() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const { setConfig, config } = useConfigurationContext();
   const onSubmit = (data, e) => {
     e.preventDefault();
     setConfig({
-      numberOfQueue: Number(data.queue),
+      numberOfQueue: Number(data.numberOfQueue),
       min: Number(data.min),
       max: Number(data.max),
     });
@@ -24,23 +32,23 @@ function InputFields() {
         <input
             type="number"
             id="queue"
-            {...register("queue", { required: true, min: 1 })}
+            {...register("numberOfQueue")}
         />
-        {errors.queue && <p>Number of queue is required</p>}
+        <p>{errors.numberOfQueue?.message}</p>
         <label htmlFor="min">Min</label>
         <input
             type="number"
             id="min"
-            {...register("min", { required: true, min: 1 })}
+            {...register("min")}
         />
-        {errors.min && <p>Min is required</p>}
+        <p>{errors.min?.message}</p>
         <label htmlFor="max">Max</label>
         <input
             type="number"
             id="max"
-            {...register("max", { required: true, min: 1 })}
+            {...register("max")}
         />
-        {errors.max && <p>Max is required</p>}
+        <p>{errors.max?.message}</p>
         <input type="submit" />
     </form>
   );
