@@ -102,10 +102,6 @@ function removeFromQueue() {
 function QueueList() {
     const { queues, setQueues } = useQueueListContext()
 
-    const handleAddToQueue = () => {
-        addToQueueWithLowestSum();
-    }
-
     const handleRemoveFromQueue = () => {
         removeFromQueue();
     }
