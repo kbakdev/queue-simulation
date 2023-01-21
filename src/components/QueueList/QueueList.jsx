@@ -64,9 +64,20 @@ function QueueList() {
         <button onClick={handlerReduceAllQueue}>Reduce queues</button>
       </div>
 
-      <ol>
-        <QueueTable />
-      </ol>
+      <ul>
+        {Object.entries(queue).map(([queue, persons]) => {
+          if (persons) {
+            return (
+              <li>
+                <h2>{queue}</h2>
+                {persons.map((person) => (
+                  <div>{person}</div>
+                ))}
+              </li>
+            );
+          }
+        })}
+      </ul>
     </>
   );
 }
