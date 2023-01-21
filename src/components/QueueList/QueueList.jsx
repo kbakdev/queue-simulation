@@ -9,6 +9,7 @@ function generateRandomNumber(min, max) {
 }
 
 const getKeyLowestQueue = (queues) => {
+  console.log(queues, "xd");
   const sumAllQueue = Object.entries(queues).map(([_, queue]) =>
     queue.reduce((prev, num) => Number(prev) + Number(num), 0)
   );
@@ -24,14 +25,13 @@ function QueueList() {
     config === undefined
       ? undefined
       : Object.fromEntries(
-          Array.from({ length: config.numberOfQueues }, (_, i) => [i, []])
+          Array.from({ length: config.numberOfQueue }, (_, i) => [i, []])
         )
   );
-  console.log(queue);
+  console.log(queue, "stan", config);
   const handlerAddToQueue = () => {
     const keyLowestQueue = getKeyLowestQueue(queue);
     setQueue((prev) => {
-      console.log(prev, "prev", prev[keyLowestQueue], keyLowestQueue);
       return {
         ...prev,
         [keyLowestQueue]: [
