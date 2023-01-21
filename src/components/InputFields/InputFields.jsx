@@ -12,7 +12,11 @@ function InputFields() {
   const { setConfig, config } = useConfigurationContext();
   const onSubmit = (data, e) => {
     e.preventDefault();
-    setConfig({ numberOfQueue: data.queue, min: data.min, max: data.max });
+    setConfig({
+      numberOfQueue: Number(data.queue),
+      min: Number(data.min),
+      max: Number(data.max),
+    });
   };
   console.log(config);
   return (
