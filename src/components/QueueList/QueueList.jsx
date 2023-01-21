@@ -5,7 +5,7 @@ import { useConfigurationContext } from "../../context/ConfigurationContext.jsx"
 
 // Generate random number between min and max
 function generateRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (parseInteger(max) - parseInteger(min) + 1)) + parseInteger(min)
 }
 
 const getKeyLowestQueue = (queues) => {
