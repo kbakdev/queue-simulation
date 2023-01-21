@@ -6,7 +6,6 @@ function InputFields() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const { setConfig, config } = useConfigurationContext();
@@ -21,20 +20,28 @@ function InputFields() {
   console.log(config);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="queue">Number of queues</label>
-        <input type="number" {...register("queue")} />
-      </div>
-      <div>
+        <label htmlFor="queue">Number of queue</label>
+        <input
+            type="number"
+            id="queue"
+            {...register("queue", { required: true, min: 1 })}
+        />
+        {errors.queue && <p>Number of queue is required</p>}
         <label htmlFor="min">Min</label>
-        <input type="number" {...register("min")} />
-      </div>
-      <div>
+        <input
+            type="number"
+            id="min"
+            {...register("min", { required: true, min: 1 })}
+        />
+        {errors.min && <p>Min is required</p>}
         <label htmlFor="max">Max</label>
-
-        <input type="number" {...register("max")} />
-      </div>
-      <button type="submit">Submit</button>
+        <input
+            type="number"
+            id="max"
+            {...register("max", { required: true, min: 1 })}
+        />
+        {errors.max && <p>Max is required</p>}
+        <input type="submit" />
     </form>
   );
 }
