@@ -3,7 +3,6 @@ import React from "react";
 const Configuration = () => {
     return (
         <>
-            <h1>Configuration</h1>
             <InputFields />
         </>
     );

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useConfigurationContext } from "../../context/ConfigurationContext";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import './InputFields.scss';
 const schema = yup.object().shape({
     numberOfQueue: yup.number().required().positive().integer(),
     min: yup.number().required().positive().integer(),
@@ -25,24 +26,23 @@ function InputFields() {
       max: Number(data.max),
     });
   };
-  console.log(config);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="queue">Number of queue</label>
+        <label htmlFor="queue">Number of queue </label>
         <input
             type="number"
             id="queue"
             {...register("numberOfQueue")}
         />
         <p>{errors.numberOfQueue?.message}</p>
-        <label htmlFor="min">Min</label>
+        <label htmlFor="min">Min </label>
         <input
             type="number"
             id="min"
             {...register("min")}
         />
         <p>{errors.min?.message}</p>
-        <label htmlFor="max">Max</label>
+        <label htmlFor="max">Max </label>
         <input
             type="number"
             id="max"

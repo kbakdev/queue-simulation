@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import {useConfigurationContext} from "../../context/ConfigurationContext.jsx";
+import './QueueList.scss';
+import {parseInteger} from "jsdom/lib/jsdom/living/helpers/strings.js";
+import {Link} from "react-router-dom";
+import * as Constants from "../Navbar/Constants.jsx";
 
 // Generate random number between min and max
 function generateRandomNumber(min, max) {
@@ -36,13 +40,11 @@ function QueueList() {
           Array.from({ length: config.numberOfQueue }, (_, i) => [i, []])
         )
   );
-  console.log(queue, "stan", config);
   const handlerReduceAllQueue = () => {
     setQueue((queues) => decreaseAllQueues(queues));
   };
   const handlerAddToQueue = () => {
     const keyLowestQueue = getKeyLowestQueue(queue);
-    console.log(generateRandomNumber(config.min, config.max), config);
     setQueue((prev) => {
       return {
         ...prev,
@@ -53,7 +55,7 @@ function QueueList() {
       };
     });
   };
-  if (!config) return <h2>Set Configuration!</h2>;
+  if (!config) return <h2>Please, set <Link to={Constants.CONFIGURATION}>configuration</Link></h2>;
   return (
     <>
       <div>
@@ -66,9 +68,12 @@ function QueueList() {
           if (persons) {
             return (
               <li>
-                <h2>{queue}</h2>
-                <div id="sum">SUM: {persons.reduce((prev, num) => Number(prev) + Number(num), 0)}</div>
-                <div id="queue">QUEUE: {persons.join(", ")}</div>
+                <img
+                    src="src/assets/laptop.png"
+                    alt="laptop"
+                />
+                <div id="sum">Sum: {persons.reduce((prev, num) => Number(prev) + Number(num), 0)}</div>
+                <div id="queue">Queue no. <b>{parseInteger(queue)+1}</b>{persons.join(", ")}</div>
               </li>
             );
           }
