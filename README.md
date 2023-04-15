@@ -1,3 +1,5 @@
+Live demo: https://kacperbak.pl/queue-simulation/
+
 # Task topic: Simulating a queue of customers in an office
 ## Task Description:
 As a solution, it is necessary to implement a simulation along with its configuration. The configuration should allow changing basic information, i.e. the number of available positions (and thus the number of queues on which all movements will be spread), the minimum time a customer needs to handle their case at the office, and the maximum time they need for this action. The time needed to handle a case is given as an integer value greater than 0.
