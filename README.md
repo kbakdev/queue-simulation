@@ -1,82 +1,77 @@
-Temat zadania: Symulowanie kolejki petentów w urzędzie
+Task topic: Simulating a queue of customers in an office
 
-Treść zadania:
-Jako rozwiązanie należy zaimplementować symulację wraz z jej konfiguracją.
-Konfiguracja powinna umożliwiać zmianę podstawowych informacji, tj. ilość
-dostępnych stanowisk (a więc ilość kolejek, na które rozłoży się cały ruch), minimalny
-czas, który petent potrzebuje, aby załatwić swoją sprawę w urzędzie, a także maksymalny
-czas, który na tą akcję potrzebuję. Czas potrzebny na załatwienie sprawy podawany jest
-jako wartość całkowita większa od 0.
+Task Description:
 
-Druga część aplikacji odpowiada za samą symulację. Użytkownik, który korzysta z
-aplikacji, powinien mieć dostęp do 2 przycisków.
+As a solution, it is necessary to implement a simulation along with its configuration.
+The configuration should allow changing basic information, i.e. the number of
+available positions (and thus the number of queues on which all movements will be spread),
+the minimum time a customer needs to handle their case at the office, and the maximum
+time they need for this action. The time needed to handle a case is given
+as an integer value greater than 0.
 
-1. przycisk - dodanie nowej osoby do kolejki. Po kliknięciu nowa osoba zostaje
-   utworzona. Losowo generowany jest czas, który dana osoba potrzebuje do załatwienia
-   swojej sprawy. Wartość minimalna i maksymalna odczytywana jest z ekranu konfiguracji.
-   Da przykładu, jeśli wprowadzono wartość minimalną 5 a maksymalną 8, to losowy czas
-   może być z przedziału [5,8]. Po odpowiednim wygenerowaniu petenta, trafia on do
-   kolejki, w której najszybciej zostanie on przyjęty przy okienku w urzędzie.
+The second part of the application is responsible for the simulation itself. The user who uses
+the application should have access to 2 buttons.
 
-Przykład:
-Kolejka 1: 2, 4, 6
-Kolejka 2: 10
-Kolejka 3: 1, 3
+Button - adding a new person to the queue. After clicking, a new person is created.
+The time required for a given person to handle their case is randomly generated. The minimum
+and maximum values are read from the configuration screen.
+For example, if the minimum value is 5 and the maximum is 8, the random time
+can be from the range [5,8]. After properly generating the customer, they are sent to
+the queue in which they will be admitted to the window at the office as quickly as possible.
+Example:
+Queue 1: 2, 4, 6
+Queue 2: 10
+Queue 3: 1, 3
 
-Nowa osoba zostanie dodana do kolejki 3.
+A new person will be added to queue 3.
 
-2. przycisk - równoległa redukcja czasów potrzebych do załatwienia swojej sprawy. Po
-   naciśnięciu tego przycisku u wszystkich osób, które obecnie są przy okienku nastąpi
-   redukcja potrzebnego czasu o 1. W przypadku, gdy wartość spadnie do 0, to dany petent
-   jest usuwany z kolejki i następna osoba zostaje obsługiwana.
+Button - parallel reduction of the time required to handle their case. After
+pressing this button, all people who are currently at the window will have their required time
+reduced by 1. If the value drops to 0, the customer is removed from the queue and the next person is served.
+Example:
+Queue 1: 2, 4, 6
+Queue 2: 10
+Queue 3: 1, 3
 
-Przykład:
-Kolejka 1: 2, 4, 6
-Kolejka 2: 10
-Kolejka 3: 1, 3
+After pressing the button:
+Queue 1: 1, 4, 6
+Queue 2: 9
+Queue 3: 3
 
-Po naciśnięciu przycisku:
-Kolejka 1: 1, 4, 6
-Kolejka 2: 9
-Kolejka 3: 3
+All events (adding a new person to the queue, updating times) for the purpose of
+simplifying the task should be handled by clicking the button. There is no need
+to prepare event handling using setInterval or setTimeout.
 
-Wszystkie eventy (dodwanie nowej osoby do kolejki, aktualizacja czasów) w celu
-uproszczenia zadania powinny być obsługiwane poprzez naciśnięcie przycisku. Nie ma
-potrzeby, aby przygotować obsługę eventów przy wykorzystaniu setInterval albo
-setTimeout.
+Technological stack:
 
-Stack technologiczny:
-- React
-- Testing Library
-- React Router DOM
+React
+Testing Library
+React Router DOM
+Starting the preliminary application:
 
-Uruchomienie wstępnej aplikacji:
-- Po skopiowaniu i wypakowaniu plików startowych należy zainstalować
-  niezbędne zależności poleceniem yarn install albo npm install
-- Następnie należy wpisać polecenie yarn dev lub npm run dev
-- Wstępne aplikacja będzie dostępna pod adresem http://localhost:5173/
+After copying and unpacking the starter files, you should install the
+necessary dependencies with the command yarn install or npm install
+Then, type the command yarn dev or npm run dev
+The preliminary application will be available at http://localhost:5173/
+Functional requirements:
 
-Wymagania funkcjonalne:
-- Symulowanie rozłożenia kolejki na kilka stanowisk
-- Kalkulacja potrzebnego czasu na obsłużenie całej kolejki
-- Dodawanie nowych osób do kolejki
-- Równoległa redukcja czasu potrzebnego do załatwienia danej sprawy przez
-  wszystkich petentów, którzy obecnie są przy stanowisku
-- Wstępna konfiguracja symulacji
-- Wyświetlanie wszystkich kolejek
+Simulating the distribution of a queue across several positions
+Calculation of the time required to handle the entire queue
+Adding new people to the queue
+Parallel reduction of the time required to handle the case by
+all customers who are currently at the position
+Preliminary simulation configuration
+Displaying all queues
+Sample application:
+Simulation configuration screen
 
-Przykładowa aplikacja:
-Ekran konfiguracji symulacji
+Simulation screen
 
-Ekran symulacji
+Additional information:
+In the /src/assets/images directory, there are graphics that can be used in the application.
+Their use is obligatory, there is no imposed requirement on how the application should look.
+The application should be as simple as possible, but it must meet all
+functional requirements.
 
-Dodatkowe informacje:
-W katalogu /src/assets/images dostępne są grafiki, które można wykorzystać w aplikacji.
-Ich użycie jest obligatoryjne, nie ma narzuconego wymagania jak powinna wyglądać
-aplikacji. Aplikacja powinna być jak najprostsza, jednak musi spełniać wszystkie
-wymagania funkcjonalne.
-
-Testy:
-W projekcie skonfigurowana została biblioteka React Testing Library. Jeśli czujesz się na
-siłach, aby przygotować proste testy jednostkowe, masz możliwość ich dodania. Testy w
-projekcie uruchamia się poleceniem yarn test albo npm run test.
+Tests:
+The React Testing Library has been configured in the project. If you feel...
